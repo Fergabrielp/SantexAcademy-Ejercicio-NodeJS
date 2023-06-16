@@ -1,33 +1,33 @@
-const createLibrary = (req, res) => {
+const createLibraryController = (req, res) => {
     console.log("Creating a library")
 }
 
-const getLibrary = (req, res) => {
+const getLibraryController = (req, res) => {
     console.log("Getting a library")
 }
 
-const getAllLibraries = (req, res) => {
+const getAllLibrariesController = (req, res) => {
     console.log("Getting all libraries")
 }
 
-const modifyLibrary = (req, res) => {
+const modifyLibraryController = (req, res) => {
     console.log("Modifying a library")
 }
 
-const deleteLibrary = (req, res) => {
+const deleteLibraryController = (req, res) => {
     console.log("Deleting a library")
 }
 
-const createBook = (req, res) => {
+const createBookController = (req, res) => {
     console.log("Creating a library")
 }
 
 
 module.exports = {
-    createLibrary,
-    getLibrary,
-    getAllLibraries,
-    modifyLibrary,
-    deleteLibrary,
-    createBook
+    createLibraryController,
+    getLibraryController,
+    getAllLibrariesController,
+    modifyLibraryController,
+    deleteLibraryController,
+    createBookController
 }

@@ -1,5 +1,5 @@
-const loggingUser = (req, res) => {
+const loggingUserController = (req, res) => {
     console.log("Logging user")
 }
 
-module.exports = { loggingUser }
+module.exports = { loggingUserController }
