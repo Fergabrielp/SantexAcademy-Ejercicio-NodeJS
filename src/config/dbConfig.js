@@ -5,4 +5,14 @@ const sequelize = new Sequelize({
     storage: "./DB.sqlite"
 })
 
-module.exports = sequelize
+const initializeDB = async () => {
+    try {
+        await sequelize.authenticate()
+        console.log("Succesfuly connected to Data base")
+        await sequelize.sync({ force: true })
+    } catch (error) {
+        console.error("Error trying to connect to Data base: ", error)
+    }
+}
+
+module.exports = { sequelize, initializeDB }

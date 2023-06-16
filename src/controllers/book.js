@@ -1,29 +1,29 @@
-const createBookController = (req, res) => {
+const createBook = (req, res) => {
     console.log("Creating a Book")
 }
 
-const getBookController = (req, res) => {
+const getBook = (req, res) => {
     console.log("Getting a Book")
 }
 
-const getAllBooksController = (req, res) => {
+const getAllBooks = (req, res) => {
     console.log("Getting all Books")
 }
 
-const modifyBookController = (req, res) => {
+const modifyBook = (req, res) => {
     console.log("Modifying a Book")
 }
 
-const deleteBookController = (req, res) => {
+const deleteBook = (req, res) => {
     console.log("Deleting a Book")
 }
 
 
 
 module.exports = {
-    createBookController,
-    getBookController,
-    getAllBooksController,
-    modifyBookController,
-    deleteBookController
+    createBook,
+    getBook,
+    getAllBooks,
+    modifyBook,
+    deleteBook
 }

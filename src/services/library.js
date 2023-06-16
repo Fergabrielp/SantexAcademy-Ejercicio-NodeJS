@@ -1,5 +1,7 @@
-const createLibrary = (req, res) => {
-    console.log("Creating a library")
+const { libraryProvider } = require('../providers')
+
+const createLibrary = async (library) => {
+    return await libraryProvider.createLibrary(library)
 }
 
 const getLibrary = (req, res) => {

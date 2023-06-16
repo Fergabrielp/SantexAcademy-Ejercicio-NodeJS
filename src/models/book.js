@@ -1,18 +1,18 @@
 const { DataTypes } = require('sequelize')
-const sequelize = require('../config/dbConfig')
+const { sequelize } = require('../config/dbConfig')
 
 const Book = sequelize.define('Book', {
 
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        primaryKey: true,
         autoIncrement: true
     },
 
     isbn: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        autoIncrement: true
     },
 
     title: {

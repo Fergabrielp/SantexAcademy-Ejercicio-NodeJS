@@ -1,4 +1,5 @@
 const express = require('express')
+const { initializeDB } = require('./config/dbConfig')
 const { bookRouter, libraryRouter, userRouter } = require('./routes')
 
 const PORT = 3000
@@ -11,11 +12,7 @@ app.use('/book', bookRouter)
 app.use('/user', userRouter)
 
 
-
-app.get('/', (req, res) => {
-    res.send("Testing server...")
-})
-
-app.listen(PORT, () => {
-    console.log(`Listenting to request in port ${PORT}`)
+app.listen(PORT, async () => {
+    await initializeDB()
+    console.log(`Server running in port: ${PORT}`)
 })

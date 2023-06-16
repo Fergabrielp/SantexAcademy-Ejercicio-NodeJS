@@ -1,11 +1,12 @@
 const { DataTypes } = require('sequelize')
-const sequelize = require('../config/dbConfig')
+const { sequelize } = require('../config/dbConfig')
 
 const Library = sequelize.define('Library', {
 
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        primaryKey: true,
         autoIncrement: true
     },
 

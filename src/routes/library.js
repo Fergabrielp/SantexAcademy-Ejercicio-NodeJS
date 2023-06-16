@@ -1,9 +1,8 @@
 const express = require('express')
+const { libraryController } = require('../controllers')
 
 const router = express.Router()
 
-router.get('/', (req, res) => {
-    res.send("Testing library...")
-})
+router.post('/', libraryController.createLibrary)
 
 module.exports = router

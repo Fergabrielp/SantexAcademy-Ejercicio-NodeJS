@@ -1,33 +1,40 @@
-const createLibraryController = (req, res) => {
-    console.log("Creating a library")
+const { libraryService } = require('../services')
+
+const createLibrary = async (req, res) => {
+    try {
+        const newLibrary = await libraryService.createLibrary(req.body)
+        res.json(newLibrary)
+    } catch (error) {
+        res.status(400).json({action: "CreateLibrary", error: error.message})
+    }
 }
 
-const getLibraryController = (req, res) => {
+const getLibrary = (req, res) => {
     console.log("Getting a library")
 }
 
-const getAllLibrariesController = (req, res) => {
+const getAllLibraries = (req, res) => {
     console.log("Getting all libraries")
 }
 
-const modifyLibraryController = (req, res) => {
+const modifyLibrary = (req, res) => {
     console.log("Modifying a library")
 }
 
-const deleteLibraryController = (req, res) => {
+const deleteLibrary = (req, res) => {
     console.log("Deleting a library")
 }
 
-const createBookController = (req, res) => {
+const createBook = (req, res) => {
     console.log("Creating a library")
 }
 
 
 module.exports = {
-    createLibraryController,
-    getLibraryController,
-    getAllLibrariesController,
-    modifyLibraryController,
-    deleteLibraryController,
-    createBookController
+    createLibrary,
+    getLibrary,
+    getAllLibraries,
+    modifyLibrary,
+    deleteLibrary,
+    createBook
 }
