@@ -1,5 +1,5 @@
 const express = require('express')
-const {bookRouter, libraryRouter, userRouter} = require('./routes')
+const { bookRouter, libraryRouter, userRouter } = require('./routes')
 
 const PORT = 3000
 const app = express()
