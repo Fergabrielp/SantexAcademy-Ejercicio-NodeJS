@@ -4,23 +4,23 @@ const createLibrary = async (library) => {
     return await libraryProvider.createLibrary(library)
 }
 
-const getLibrary = (req, res) => {
-    console.log("Getting a library")
+const getLibrary = async (id) => {
+    return await libraryProvider.getLibrary(id)
 }
 
-const getAllLibraries = (req, res) => {
-    console.log("Getting all libraries")
+const getAllLibraries = async () => {
+    return await libraryProvider.getAllLibraries()
 }
 
-const modifyLibrary = (req, res) => {
-    console.log("Modifying a library")
+const modifyLibrary = async (id, newLibrary) => {
+    return await libraryProvider.modifyLibrary(id, newLibrary)
 }
 
-const deleteLibrary = (req, res) => {
-    console.log("Deleting a library")
+const deleteLibrary = async (id) => {
+    return await libraryProvider.deleteLibrary(id)
 }
 
-const createBook = (req, res) => {
+const createBook = async (req, res) => {
     console.log("Creating a library")
 }
 
