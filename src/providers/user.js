@@ -45,4 +45,17 @@ const deleteUser = async (id) => {
     }
 }
 
-module.exports = { createUser, getUser, getAllUsers, modifyUser, deleteUser }
+const validateUser = async (email, password) => {
+    try {
+        const user = await User.findOne({where: {email, password}})
+        if(user){
+            return user
+        }else{
+            return false
+        }
+    } catch (error) {
+        console.error(`Error when validating user. Error detail: `, error)
+    }
+}
+
+module.exports = { createUser, getUser, getAllUsers, modifyUser, deleteUser, validateUser }

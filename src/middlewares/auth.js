@@ -18,7 +18,7 @@ passport.use(
     )
 )
 
-const checkJwt = passport.authenticate('jwt', { session: false })
+const auth = passport.authenticate('jwt', { session: false })
 
 const isAdmin = (req, res, next) => {
     return passport.authenticate('jwt', { session: false }, (err, user)=> {
@@ -27,7 +27,7 @@ const isAdmin = (req, res, next) => {
             return next(err)
         }
 
-        if(user.role === 'Admin') {
+        if(user.user === 'admin') {
             req.user = user
             return next()
         }
@@ -36,5 +36,5 @@ const isAdmin = (req, res, next) => {
     })(req, res, next)
 }
 
-module.exports = { SERVER_KEY, checkJwt, isAdmin }
+module.exports = { SERVER_KEY, auth, isAdmin }
 

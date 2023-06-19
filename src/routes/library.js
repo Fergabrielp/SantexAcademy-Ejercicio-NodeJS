@@ -5,13 +5,13 @@ const { authMiddleware } = require('../middlewares')
 
 const router = express.Router()
 
-router.post('/', authMiddleware.isAdmin, libraryController.createLibrary)
+router.post('/', authMiddleware.auth, libraryController.createLibrary)
 router.get('/:libraryId', libraryController.getLibrary)
 router.get('/', libraryController.getAllLibraries)
-router.put('/:libraryId', authMiddleware.isAdmin, libraryController.modifyLibrary)
-router.delete('/:libraryId', authMiddleware.isAdmin, libraryController.deleteLibrary)
+router.put('/:libraryId', authMiddleware.auth, libraryController.modifyLibrary)
+router.delete('/:libraryId', authMiddleware.auth, libraryController.deleteLibrary)
 
-router.post('/addBook', authMiddleware.isAdmin, libraryController.createBook)
+router.post('/addBook', authMiddleware.auth, libraryController.createBook)
 
 
 module.exports = router
