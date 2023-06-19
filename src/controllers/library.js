@@ -52,7 +52,7 @@ const modifyLibrary = async (req, res) => {
             res.status(400).json({error: `Library with id ${id} does not exist`})
         }
     } catch (error) {
-        res.status(400).json({action: "GetLibrary", error: error.message})
+        res.status(400).json({action: "ModifyLibrary", error: error.message})
     }
 }
 
@@ -67,7 +67,7 @@ const deleteLibrary = async (req, res) => {
             res.status(400).json({error: `Library with id ${id} does not exist`})
         }
     } catch (error) {
-        res.status(400).json({action: "GetLibrary", error: error.message})
+        res.status(400).json({action: "DeleteBook", error: error.message})
     }
 }
 

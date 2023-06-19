@@ -1,21 +1,23 @@
-const createBook = (req, res) => {
-    console.log("Creating a Book")
+const { bookProvider } = require('../providers')
+
+const createBook = async (book) => {
+    return await bookProvider.createBook(book)
 }
 
-const getBook = (req, res) => {
-    console.log("Getting a Book")
+const getBook = async (id) => {
+    return await bookProvider.getBook(id)
 }
 
-const getAllBooks = (req, res) => {
-    console.log("Getting all Books")
+const getAllBooks = async () => {
+    return await bookProvider.getAllBooks()
 }
 
-const modifyBook = (req, res) => {
-    console.log("Modifying a Book")
+const modifyBook = async (id, newBook) => {
+    return await bookProvider.modifyBook(id, newBook)
 }
 
-const deleteBook = (req, res) => {
-    console.log("Deleting a Book")
+const deleteBook = async (id) => {
+    return await bookProvider.deleteBook(id)
 }
 
 
