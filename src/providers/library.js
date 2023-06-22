@@ -1,4 +1,4 @@
-const { Library } = require('../models')
+const { Library, Book, User } = require('../models')
 
 const createLibrary = async (library) => {
     try {
@@ -11,7 +11,7 @@ const createLibrary = async (library) => {
 
 const getLibrary = async (id) => {
     try {
-        const libraryFound = await Library.findByPk(id)
+        const libraryFound = await Library.findByPk(id, {include: {all: true}})
         return libraryFound
     } catch (error) {
         console.error(`Error when finding a Library with id ${id}. Error detail: `, error)
@@ -45,4 +45,13 @@ const deleteLibrary = async (id) => {
     }
 }
 
-module.exports = { createLibrary, getLibrary, getAllLibraries, modifyLibrary, deleteLibrary }
+const createBook = async (id, book) => {
+    try {
+        const newBook = await Book.create({...book, library: id})
+        return newBook
+    } catch (error) {
+        console.error("Error when creating a book. Error detail: ", error)
+    }
+}
+
+module.exports = { createLibrary, getLibrary, getAllLibraries, modifyLibrary, deleteLibrary, createBook }

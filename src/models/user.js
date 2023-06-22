@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize')
 const { sequelize } = require('../config/dbConfig')
+const  Book = require('./book')
 
 const User = sequelize.define('User', {
 
@@ -36,6 +37,10 @@ const User = sequelize.define('User', {
             isAlphanumeric: true
         }
     },
+},
+{
+    timestamps: false,   
 })
+
 
 module.exports = User

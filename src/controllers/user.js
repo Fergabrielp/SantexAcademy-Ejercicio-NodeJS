@@ -1,11 +1,18 @@
 const { userService } = require('../services')
 
 const createUser = async (req, res) => {
+
+    const user = req.body
+
     try {
-        const newUser = await userService.createUser(req.body)
-        res.json(newUser)
+        const newUser = await userService.createUser(user)
+        if(newUser){
+            res.status(201).json(newUser)
+        }else{
+            res.status(400).json({msg: "Error when creating a new user, please check if user data is correct"})
+        }
     } catch (error) {
-        res.status(400).json({action: "CreateUser", error: error.message})
+        res.status(500).json({action: "Server Error => CreateUser", error: error.message})
     }
 }
 
@@ -15,12 +22,12 @@ const getUser = async (req, res) => {
     try {
         const userFound = await userService.getUser(id)
         if(userFound){
-            res.json(userFound)
+            res.status(200).json(userFound)
         }else{
-            res.json({error: `User not found with id: ${id}`})
+            res.status(404).json({error: `User not found with id: ${id}`})
         }
     } catch (error) {
-        res.status(400).json({action: "GetUser", error: error.message})
+        res.status(500).json({action: "Server Error => GetUser", error: error.message})
     }
 }
 
@@ -28,12 +35,12 @@ const getAllUsers = async (req, res) => {
     try {
         const usersFound = await userService.getAllUsers()
         if(usersFound.length > 0){
-            res.json(usersFound)
+            res.status(200).json(usersFound)
         }else{
-            res.json({error: `No user was added yet`})
+            res.status(404).json({error: `No user was added yet`})
         }
     } catch (error) {
-        res.status(400).json({action: "GetUsers", error: error.message})
+        res.status(500).json({action: "Server Error => GetUsers", error: error.message})
     }
 }
 
@@ -44,12 +51,12 @@ const modifyUser = async (req, res) => {
     try {
         const userModified = await userService.modifyUser(id, newUser)
         if(userModified[0] !== 0){
-            res.json({action: "ModifyUser", msg: `User with id: ${id}, was succesfuly modified`})
+            res.status(200).json({action: "ModifyUser", msg: `User with id: ${id}, was succesfuly modified`})
         }else{
-            res.status(400).json({error: `User with id ${id} does not exist`})
+            res.status(404).json({error: `User with id ${id} does not exist`})
         }
     } catch (error) {
-        res.status(400).json({action: "ModifyUser", error: error.message})
+        res.status(500).json({action: "Server Error => ModifyUser", error: error.message})
     }
 }
 
@@ -59,12 +66,12 @@ const deleteUser = async (req, res) => {
     try {
         const userDeleted = await userService.deleteUser(id)
         if(userDeleted !== 0){
-            res.json({action: "DeleteUser", msg: `User with id: ${id}, was succesfuly deleted`})
+            res.status(204).json({action: "DeleteUser", msg: `User with id: ${id}, was succesfuly deleted`})
         }else{
-            res.status(400).json({error: `User with id ${id} does not exist`})
+            res.status(404).json({error: `User with id ${id} does not exist`})
         }
     } catch (error) {
-        res.status(400).json({action: "DeleteUser", error: error.message})
+        res.status(500).json({action: "Server Error => DeleteUser", error: error.message})
     }
 }
 

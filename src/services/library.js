@@ -20,8 +20,13 @@ const deleteLibrary = async (id) => {
     return await libraryProvider.deleteLibrary(id)
 }
 
-const createBook = async (req, res) => {
-    console.log("Creating a library")
+const createBook = async (id, book) => {
+    const existingLibrary = await libraryProvider.getLibrary(id)
+    if(existingLibrary){
+        const newBook = await libraryProvider.createBook(id, book)
+        return newBook
+    }
+    return null
 }
 
 

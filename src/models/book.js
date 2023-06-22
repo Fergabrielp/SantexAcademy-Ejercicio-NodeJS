@@ -34,7 +34,11 @@ const Book = sequelize.define('Book', {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-
+},
+{
+    timestamps: false,
 })
+
+
 
 module.exports = Book
