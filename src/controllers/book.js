@@ -67,7 +67,7 @@ const deleteBook = async (req, res) => {
     try {
         const bookDeleted = await bookService.deleteBook(id)
         if(bookDeleted !== 0){
-            res.status(204).json({action: "DeleteBook", msg: `Book with id: ${id}, was succesfuly deleted`})
+            res.status(200).json({action: "DeleteBook", msg: `Book with id: ${id}, was succesfuly deleted`})
         }else{
             res.status(404).json({error: `Book with id ${id} does not exist`})
         }

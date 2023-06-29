@@ -28,7 +28,9 @@ const Library = sequelize.define('Library', {
 
 },
 {
-    timestamps: false,   
+    timestamps: false,
+    paranoid: true,
+    deletedAt: 'soft_delete'   
 })
 
 Library.hasMany(Book, { foreignKey: 'library', sourceKey: 'id' })

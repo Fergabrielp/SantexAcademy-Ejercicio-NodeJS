@@ -1,11 +1,18 @@
 const { User } = require('../models')
 
 const createUser = async (user) => {
-    try {
-        const newUser = await User.create(user)
-        return newUser
-    } catch (error) {
-        console.error('Error when creating a new User. Error detail: ', error)
+
+    const userFound = await User.findOne({where: {email: user.email}})
+
+    if(userFound){
+        return "user-exists"
+    }else{
+        try {
+            const newUser = await User.create(user)
+            return newUser
+        } catch (error) {
+            console.error('Error when creating a new User. Error detail: ', error)
+        }
     }
 }
 

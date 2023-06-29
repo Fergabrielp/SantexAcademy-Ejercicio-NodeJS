@@ -32,11 +32,12 @@ const Book = sequelize.define('Book', {
 
     library: {
         type: DataTypes.INTEGER,
-        allowNull: false,
     },
 },
 {
     timestamps: false,
+    paranoid: true,
+    deletedAt: 'soft_delete'
 })
 
 

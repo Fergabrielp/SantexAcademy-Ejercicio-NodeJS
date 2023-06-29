@@ -6,7 +6,11 @@ const createUser = async (req, res) => {
 
     try {
         const newUser = await userService.createUser(user)
-        if(newUser){
+
+        if(newUser === "user-exists"){
+            res.status(400).json({msg: "Error when creating a new user, email already exists"})
+        }
+        else if(newUser !== "user-exists"){
             res.status(201).json(newUser)
         }else{
             res.status(400).json({msg: "Error when creating a new user, please check if user data is correct"})
@@ -66,7 +70,7 @@ const deleteUser = async (req, res) => {
     try {
         const userDeleted = await userService.deleteUser(id)
         if(userDeleted !== 0){
-            res.status(204).json({action: "DeleteUser", msg: `User with id: ${id}, was succesfuly deleted`})
+            res.status(200).json({action: "DeleteUser", msg: `User with id: ${id}, was succesfuly deleted`})
         }else{
             res.status(404).json({error: `User with id ${id} does not exist`})
         }

@@ -1,11 +1,19 @@
-const { Library, Book, User } = require('../models')
+const { Library, Book } = require('../models')
 
 const createLibrary = async (library) => {
-    try {
-        const newLibrary = await Library.create(library)
-        return newLibrary
-    } catch (error) {
-        console.error('Error when creating a new Library. Error detail: ', error)
+
+    const { name, location, telephone } = library
+    const libraryFound = await Library.findOne({ where: { name, location, telephone, } });
+
+    if(libraryFound){
+        return "library-exists"
+    }else{
+        try {
+            const newLibrary = await Library.create(library)
+            return newLibrary
+        }catch (error) {
+            console.error('Error when creating a new Library. Error detail: ', error)
+        }
     }
 }
 
@@ -20,7 +28,7 @@ const getLibrary = async (id) => {
 
 const getAllLibraries = async () => {
     try {
-        const librariesFound = await Library.findAll()
+        const librariesFound = await Library.findAll({include: {all: true}})
         return librariesFound
     } catch (error) {
         console.error(`Error when finding libraries. Error detail: `, error)

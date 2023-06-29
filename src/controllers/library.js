@@ -6,9 +6,12 @@ const createLibrary = async (req, res) => {
 
     try {
         const newLibrary = await libraryService.createLibrary(library)
-        if(newLibrary){
+        if(newLibrary !== "library-exists"){
             res.status(201).json(newLibrary)
-        }else{
+        }else if(newLibrary === "library-exists"){
+            res.status(400).json({msg: "Error when creating a new library, Library already exists"})
+        }
+        else{
             res.status(400).json({msg: "Error when creating a new library, please check if library data is correct"})
         }
     } catch (error) {
@@ -69,7 +72,7 @@ const deleteLibrary = async (req, res) => {
     try {
         const libraryDeleted = await libraryService.deleteLibrary(id)
         if(libraryDeleted !== 0){
-            res.status(204).json({action: "DeleteLibrary", msg: `Library with id: ${id}, was succesfuly deleted`})
+            res.status(200).json({action: "DeleteLibrary", msg: `Library with id: ${id}, was succesfuly deleted`})
         }else{
             res.status(400).json({error: `Library with id ${id} does not exist`})
         }

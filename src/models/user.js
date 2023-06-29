@@ -1,6 +1,5 @@
 const { DataTypes } = require('sequelize')
 const { sequelize } = require('../config/dbConfig')
-const  Book = require('./book')
 
 const User = sequelize.define('User', {
 
@@ -39,7 +38,9 @@ const User = sequelize.define('User', {
     },
 },
 {
-    timestamps: false,   
+    timestamps: false,
+    paranoid: true,
+    deletedAt: 'soft_delete'   
 })
 
 
